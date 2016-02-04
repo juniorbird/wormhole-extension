@@ -19,4 +19,8 @@ function getHeadings() {
   return headings;
 }
 
-console.log(getHeadings());
+
+//sends Message from content to background so that makeTabs can get the array
+chrome.runtime.sendMessage({arr: getHeadings()}, function (response) {
+  console.log('response in content is ', response);
+});
