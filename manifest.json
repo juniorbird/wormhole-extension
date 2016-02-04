@@ -1,13 +1,15 @@
 {
   "manifest_version": 2,
   "name": "Wormhole",
+  "description": "Go down the content wormhole of the web!",
   "version": "0.1",
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": ["jquery-2.2.0.min.js", "parsecontent.js"]
-    }
-  ]
+  "browser_action": {
+    "default_icon": "spiral.png",
+    "default_title": "Go down the wormhole"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "permissions": ["activeTab"]
 }
