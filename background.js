@@ -3,6 +3,7 @@ chrome.browserAction.onClicked.addListener(function (tab) {
   }
 );
 
+
 //listen for sendMessage from getHeadings
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     console.log('request from getheadings ', request);
