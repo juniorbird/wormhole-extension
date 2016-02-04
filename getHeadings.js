@@ -19,4 +19,4 @@ function getHeadings() {
   return headings;
 }
 
-console.log(getHeadings());
+// console.log(getHeadings());
