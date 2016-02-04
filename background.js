@@ -1,6 +1,16 @@
 chrome.browserAction.onClicked.addListener(function(tab) {
-  //test run: creates 1 new tab with a search term : bananas
-  code: chrome.tabs.create({ url: "http://www.google.com/#q=bananas", windowId: 1 });
+
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    var currentTab = tabs[0];
+    chrome.tabs.sendMessage(currentTab.id, {"message": "clicked_browser_action"})
+  });
+});
+
+chrome.runtime.onMessage.addListener(function (req, send, res) {
+  if (req.message === 'open_new_tab') {
+    console.log('it good');
+    chrome.tabs.create({url: "http://www.codesmith.io"});
+  }
 });
 
 //
