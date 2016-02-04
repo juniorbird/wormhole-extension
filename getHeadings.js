@@ -1,6 +1,6 @@
 function getHeadings() {
 
-  var headingLevels = ['h1', 'h2', 'h3', 'h4'];
+  var headingLevels = ['h1', 'h2','h3'];
   var thisLevel;
   var headings = [];
 
