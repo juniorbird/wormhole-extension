@@ -4,6 +4,9 @@ chrome.browserAction.onClicked.addListener(function(tab) {
     var currentTab = tabs[0];
     chrome.tabs.sendMessage(currentTab.id, {"message": "clicked_browser_action"})
   });
+
+chrome.browserAction.onClicked.addListener(function (tab) {
+  chrome.tabs.executeScript(null, { file: 'getHeadings.js' });
 });
 
 chrome.runtime.onMessage.addListener(function (req, send, res) {
