@@ -3,40 +3,24 @@ chrome.browserAction.onClicked.addListener(function (tab) {
   }
 );
 
-
-//listen for sendMessage from getHeadings
+//Listens for Array of search terms from getHeadings script. 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    console.log('the first term from getHeadings ', request.arr[0]);
+    //for each search term, do an AJAX request to our custom search engine
+    //parse the responseText, grab the link at items and make a new tab at that URL
+    request.arr.forEach(function (searchTerm) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://www.googleapis.com/customsearch/v1?&cx=006093038672231679913:0iime5eaerc&key=AIzaSyAqiP2UZ4VHCc_SQHGvCbvie-6SinCFHfA&q=' + searchTerm, false);
+      xhr.send();
+      if (xhr.status === 200) {
+        //parse responsText to JSON
+        var responseObj = JSON.parse(xhr.responseText);
+        var linkString = responseObj.items[0].link;
 
-    var cx = '006093038672231679913:0iime5eaerc';
-    //do an AJAX request to our custom search engine and return the url to makeTabs
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://www.googleapis.com/customsearch/v1?&cx=006093038672231679913:0iime5eaerc&key=AIzaSyAqiP2UZ4VHCc_SQHGvCbvie-6SinCFHfA&q=bananas', false);
-    xhr.send();
-
-    if (xhr.status === 200) {
-     //parse responsText to JSON
-     var responseObj = JSON.parse(xhr.responseText);
-     var linkString = responseObj.items[0].link;
-
-     //pass link value to makeTabs
-     makeTab(linkString);
-
-    }
-
-    // xhr.onload = function () {
-    //   if (xhr.readystate === 4) {
-    //     console.log('very gotten on the onload');
-    //     if (xhr.status === 200) {
-    //       console.log('responseText is ', xhr.responseText);
-    //     } else {
-    //       console.error('errorzz ', xhr.responseText);
-    //     }
-    //   }
-
-  });
-
+        //pass link value to makeTabs
+        makeTab(linkString);
+      }
+    });
+});
 
 //take return from getHeadings.js and generate tabs from it.
 function makeTabsFromArray(arrayOfSearchTermsStrings) {
