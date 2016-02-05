@@ -15,8 +15,8 @@ function getHeadings() {
       headings.push(thisLevel[i].textContent);
     }
   });
-
-  return headings;
+  //var length = headings.length < 5 ? headings.length : 5;
+  return headings.slice(0, 5);
 }
 
 
