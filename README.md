@@ -5,7 +5,7 @@ A simple extension for your Chrome browser.
 Have you ever been researching a topic and found an article that was almost everything you needed... but not quite? This extension scrapes the content of your page, and opens 5 new tabs with related content. Maybe one will be just what you need!
 
 ## Why Does This Exist?
-@jafow and @juniorbird built this for an overnight hackathon at @CodesmithLLC.
+[@jafow](https://github.com/jafow) and [@juniorbird](https://github.com/juniorbird) built this for an overnight hackathon at [@CodesmithLLC](https://github.com/CodesmithLLC).
 
 ## Why Isn't This On The Chrome Store?
 This extension is pretty cool, and we're proud of it! Unfortunately, it uses the Google Search API to find related content, and that is a pay-per-use service. We couldn't afford to support any kind of usage volume. Please feel free to try it and use it!
